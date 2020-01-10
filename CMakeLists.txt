@@ -1,60 +1,60 @@
-cmake_minimum_required ( версия 3.2)
+cmake_minimum_required(VERSION 3.2)
 
-проект (helloworld версии 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(helloworld VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
-find_package (требуется повысить компоненты unit_test_framework)
+find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-configure_file (version.h.in версия.х)
+configure_file(version.h.in version.h)
 
-add_executable(helloworld_cli main.СРР)
-add_library(helloworld lib.СРР)
-add_executable(test_version test_version.СРР)
+add_executable(helloworld_cli main.cpp)
+add_library(helloworld lib.cpp)
+add_executable(test_version test_version.cpp)
 
-set_target_properties (свойства helloworld_cli HelloWorld test_version
- CXX_STANDARD 14
- CXX_STANDARD_REQUIRED ON
+set_target_properties(helloworld_cli helloworld test_version PROPERTIES
+    CXX_STANDARD 14
+    CXX_STANDARD_REQUIRED ON
 )
 target_include_directories(helloworld
     PRIVATE "${CMAKE_BINARY_DIR}"
 )
-set_target_properties (свойства test_version
+set_target_properties(test_version PROPERTIES
     COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
     INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
-target_link_libraries (HELLOWORLD_CLI PRIVATE
- helloworld
+target_link_libraries(helloworld_cli PRIVATE
+    helloworld
 )
 target_link_libraries(test_version
     ${Boost_LIBRARIES}
- helloworld
+    helloworld
 )
 
-если (MSVC)
-    target_compile_options (HELLOWORLD_CLI PRIVATE
- /W4
+if (MSVC)
+    target_compile_options(helloworld_cli PRIVATE
+        /W4
     )
-    target_compile_options (HelloWorld PRIVATE
- /W4
+    target_compile_options(helloworld PRIVATE
+        /W4
     )
-    target_compile_options (TEST_VERSION PRIVATE
- /W4
+    target_compile_options(test_version PRIVATE
+        /W4
     )
-остальное ()
-    target_compile_options (HELLOWORLD_CLI PRIVATE
- - Wall-Wextra-pedantic-Werror
+else ()
+    target_compile_options(helloworld_cli PRIVATE
+        -Wall -Wextra -pedantic -Werror
     )
-    target_compile_options (HelloWorld PRIVATE
- - Wall-Wextra-pedantic-Werror
+    target_compile_options(helloworld PRIVATE
+        -Wall -Wextra -pedantic -Werror
     )
-    target_compile_options (TEST_VERSION PRIVATE
- - Wall-Wextra-pedantic-Werror
+    target_compile_options(test_version PRIVATE
+        -Wall -Wextra -pedantic -Werror
     )
 endif()
 
 
 
-установка (целевые объекты HELLOWORLD_CLI runtime  DESTINATION bin)
+install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
@@ -64,7 +64,7 @@ set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 
 set(CPACK_PACKAGE_CONTACT example@example.com)
 
-включить (CPack)
+include(CPack)
 
 enable_testing()
 
