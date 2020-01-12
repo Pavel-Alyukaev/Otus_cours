@@ -8,8 +8,10 @@ else()
 endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIR})
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(gtest REQUIRED gtest>=1.8.1)
+
+
 
 configure_file(version.h.in version.h)
 
