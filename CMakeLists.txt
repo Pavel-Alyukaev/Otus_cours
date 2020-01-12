@@ -15,8 +15,9 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 ################################
 # GTest
 ################################
-ADD_SUBDIRECTORY (gtest-1.6.0)
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+enable_testing()
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 
 
 
@@ -82,6 +83,5 @@ set(CPACK_PACKAGE_CONTACT example@example.com)
 
 include(CPack)
 
-enable_testing()
 
 add_test(test_version test_version)
