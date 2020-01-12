@@ -15,7 +15,7 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 ################################
 # GTest
 ################################
-# enable_testing()
+enable_testing()
 # find_package(GTest REQUIRED)
 # include_directories(${GTEST_INCLUDE_DIRS})
 
