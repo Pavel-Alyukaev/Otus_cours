@@ -5,7 +5,7 @@ if(${PROJECT_VERSION_PATCH} GREATER 0)
     project(helloworld VERSION 0.0.${CUR_VERSION})
 else()
     project(helloworld VERSION 0.0.1 )
-endif
+endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
