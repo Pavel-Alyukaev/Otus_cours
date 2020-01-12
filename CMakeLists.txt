@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.2)
 
+################################
+# Версионность
+################################
 if(PROJECT_VERSION_PATCH GREATER 0)
     set(CUR_VERSION $ENV{PROJECT_VERSION_PATCH})
     project(helloworld VERSION 0.0.${CUR_VERSION})
@@ -8,8 +11,12 @@ else()
 endif()
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(gtest REQUIRED gtest>=1.8.1)
+
+################################
+# GTest
+################################
+ADD_SUBDIRECTORY (gtest-1.6.0)
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 
 
