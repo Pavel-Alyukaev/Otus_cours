@@ -3,8 +3,8 @@ cmake_minimum_required(VERSION 3.2)
 if(${PROJECT_VERSION_PATCH} GREATER 0)
     set(CUR_VERSION $ENV{PROJECT_VERSION_PATCH})
     project(helloworld VERSION 0.0.${CUR_VERSION})
-else
-    project(helloworld VERSION 0.0.1)
+else()
+    project(helloworld VERSION 0.0.1 )
 endif
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
