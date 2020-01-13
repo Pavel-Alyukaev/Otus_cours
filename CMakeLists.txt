@@ -18,7 +18,7 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIR})
-target_link_libraries(g_test_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
+#target_link_libraries(g_test_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
 
 
 configure_file(version.h.in version.h)
