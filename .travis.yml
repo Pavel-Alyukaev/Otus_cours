@@ -6,9 +6,7 @@ before_script:
 - sudo cmake CMakeLists.txt
 - sudo make
 - sudo cp *.a /usr/lib
-- sudo mkdir -p /usr/local/lib/gtest
-- sudo ln -s /usr/lib/libgtest.a /usr/local/lib/gtest/libgtest.a
-- sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/gtest/libgtest_main.a
+- sudo mkdir -p /usr/local/lib/googletest
 - cd -
 
 - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
@@ -22,4 +20,4 @@ deploy:
   provider: script
   skip_cleanup: true
   script:
-  - curl -T helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -U pavel-alyukaev:$BINTRAY_API_KEY "https://api.bintray.com/content/Pavel-Alyukaev/otus-hello-world/helloworld/$TRAVIS_BUILD_NUMBER/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+  - curl -T helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -upavel-alyukaev:$BINTRAY_API_KEY "https://api.bintray.com/content/Pavel-Alyukaev/otus-hello-world/helloworld/$TRAVIS_BUILD_NUMBER/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
