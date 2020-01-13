@@ -21,3 +21,4 @@ deploy:
   skip_cleanup: true
   script:
   - curl -T helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -upavel-alyukaev:$BINTRAY_API_KEY "https://api.bintray.com/content/Pavel-Alyukaev/otus-hello-world/helloworld/$TRAVIS_BUILD_NUMBER/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
+  
