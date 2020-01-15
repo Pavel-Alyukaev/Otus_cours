@@ -19,7 +19,6 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 enable_testing()
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIR})
-target_link_libraries(g_test_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
 
 
 configure_file(version.h.in version.h)
@@ -27,6 +26,7 @@ configure_file(version.h.in version.h)
 add_executable(helloworld_cli main.cpp)
 add_library(helloworld lib.cpp)
 add_executable(test_version test_version.cpp)
+add_executable( Gtest_version Gtest_version.cpp)
 
 set_target_properties(helloworld_cli helloworld test_version PROPERTIES
     CXX_STANDARD 14
@@ -35,6 +35,12 @@ set_target_properties(helloworld_cli helloworld test_version PROPERTIES
 target_include_directories(helloworld
     PRIVATE "${CMAKE_BINARY_DIR}"
 )
+
+set_target_properties(helloworld_cli helloworld test_version_GT 
+ CXX_STANDARD 14
+ CXX_STANDARD_REQUIRED ON
+)
+
 set_target_properties(test_version PROPERTIES
     COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
     INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
@@ -48,6 +54,9 @@ target_link_libraries(test_version
     helloworld
 )
 
+target_link_libraries(Gtest_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
+
+
 if (MSVC)
     target_compile_options(helloworld_cli PRIVATE
         /W4
@@ -58,6 +67,9 @@ if (MSVC)
     target_compile_options(test_version PRIVATE
         /W4
     )
+    target_compile_options(Gtest_version PRIVATE
+    /W4
+       )
 else ()
     target_compile_options(helloworld_cli PRIVATE
         -Wall -Wextra -pedantic -Werror
@@ -68,6 +80,10 @@ else ()
     target_compile_options(test_version PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
+    target_compile_options(Gtest_version PRIVATE
+    -Wall -Wextra -pedantic -Werror
+)
+
 endif()
 
 
@@ -86,3 +102,4 @@ include(CPack)
 
 
 add_test(test_version test_version)
+add_test(Gtest_version Gtest_version)
