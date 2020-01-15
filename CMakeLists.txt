@@ -36,7 +36,7 @@ target_include_directories(helloworld
     PRIVATE "${CMAKE_BINARY_DIR}"
 )
 
-set_target_properties(helloworld_cli helloworld Gtest_version
+set_target_properties(helloworld_cli helloworld Gtest_version PROPERTIES
  CXX_STANDARD 14
  CXX_STANDARD_REQUIRED ON
 )
