@@ -1,5 +1,6 @@
 
 #include <gtest/gtest.h>
+#include "lib.h"
 
 class Test_valid_version : public ::testing::Test {
 public:
