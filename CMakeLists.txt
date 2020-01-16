@@ -54,7 +54,7 @@ target_link_libraries(test_version
     helloworld
 )
 
-target_link_libraries(Gtest_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES})
+target_link_libraries(Gtest_version ${GTEST_LIBRARIES} ${GTEST_MAIN_LIBRARIES} helloworld)
 
 
 if (MSVC)
