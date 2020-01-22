@@ -1,7 +1,7 @@
 
 #include <gtest/gtest.h>
 #include "lib.h"
-
+/*
 class Test_valid_version : public ::testing::Test {
 public:
     Test_valid_version() {/* init protected members here */ }
@@ -11,7 +11,7 @@ public:
 
 protected:
     /*  none yet */
-};
+};*/
 
 TEST_F(Test_valid_version, Version) {
    ASSERT_GT(1, 0); 
